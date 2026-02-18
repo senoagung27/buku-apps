@@ -81,6 +81,11 @@ export const useShoppingStore = defineStore('shopping', () => {
 
         const categories = [
             {
+                name: 'Makanan',
+                icon: '🥘',
+                keywords: ['nasi padang', 'ayam geprek', 'bakso', 'mie ayam', 'soto', 'nasi goreng', 'martabak', 'seblak', 'pecel', 'bubur', 'sate', 'gado-gado', 'ketoprak', 'lontong', 'roti bakar']
+            },
+            {
                 name: 'Sayuran & Buah',
                 icon: '🥬',
                 keywords: ['sayur', 'bayam', 'kangkung', 'sawi', 'wortel', 'tomat', 'cabe', 'bawang', 'brokoli', 'kol', 'timun', 'buncis', 'jeruk', 'apel', 'pisang', 'mangga', 'anggur', 'semangka', 'melon', 'buah', 'alpukat', 'jambu', 'salak', 'pepaya']
@@ -89,11 +94,6 @@ export const useShoppingStore = defineStore('shopping', () => {
                 name: 'Daging & Protein',
                 icon: '🍗',
                 keywords: ['ayam', 'daging', 'ikan', 'sapi', 'kambing', 'telur', 'sosis', 'nugget', 'bakso', 'udang', 'cumi', 'tongkol', 'lele', 'tahu', 'tempe', 'sarden', 'protein', 'kornet']
-            },
-            {
-                name: 'Makanan',
-                icon: '🥘',
-                keywords: ['nasi padang', 'ayam geprek', 'bakso', 'mie ayam', 'soto', 'nasi goreng', 'martabak', 'seblak', 'pecel', 'bubur', 'sate', 'gado-gado', 'ketoprak', 'lontong', 'roti bakar']
             },
             {
                 name: 'Bahan Pokok',
