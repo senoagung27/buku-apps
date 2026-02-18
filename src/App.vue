@@ -6,6 +6,7 @@ import ShoppingList from './components/ShoppingList.vue'
 import { ShoppingBagIcon } from '@heroicons/vue/24/solid'
 import { ArrowPathIcon, ClipboardDocumentIcon, CheckIcon } from '@heroicons/vue/24/outline'
 import { ref } from 'vue'
+import { Analytics } from '@vercel/analytics/vue'
 
 const isRefreshing = ref(false)
 const refresh = async () => {
@@ -78,5 +79,8 @@ onMounted(() => {
     <div class="flex-none w-full max-w-md mx-auto z-20">
       <ShoppingInput />
     </div>
+    
+    <!-- Vercel Analytics -->
+    <Analytics />
   </div>
 </template>
