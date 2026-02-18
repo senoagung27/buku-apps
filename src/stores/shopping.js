@@ -91,6 +91,11 @@ export const useShoppingStore = defineStore('shopping', () => {
                 keywords: ['ayam', 'daging', 'ikan', 'sapi', 'kambing', 'telur', 'sosis', 'nugget', 'bakso', 'udang', 'cumi', 'tongkol', 'lele', 'tahu', 'tempe', 'sarden', 'protein', 'kornet']
             },
             {
+                name: 'Makanan',
+                icon: '🥘',
+                keywords: ['nasi padang', 'ayam geprek', 'bakso', 'mie ayam', 'soto', 'nasi goreng', 'martabak', 'seblak', 'pecel', 'bubur', 'sate', 'gado-gado', 'ketoprak', 'lontong', 'roti bakar']
+            },
+            {
                 name: 'Bahan Pokok',
                 icon: '🍚',
                 keywords: ['beras', 'minyak', 'gula', 'garam', 'tepung', 'roti', 'mie', 'pasta', 'bihun', 'soun', 'kecap', 'saus', 'santan', 'bumbu', 'micin', 'royco', 'masako', 'kaldu', 'margarin', 'mentega']
