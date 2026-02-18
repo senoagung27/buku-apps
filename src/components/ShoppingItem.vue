@@ -38,7 +38,7 @@ const copyItem = async () => {
       </span>
     </div>
     
-    <div class="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+    <div class="flex items-center gap-1">
       <button 
         @click.stop="copyItem" 
         class="text-gray-400 hover:text-emerald-600 p-2 rounded-full hover:bg-emerald-50 transition-colors active:scale-90"
