@@ -52,7 +52,14 @@ const copyItem = async () => {
           ]"
         >
           <span :class="viewMode === 'list' ? 'text-2xl' : 'text-5xl mb-1 filter drop-shadow-sm'">{{ item.icon || item.categoryIcon }}</span>
-          <span :class="viewMode === 'list' ? 'text-lg tracking-tight' : 'text-sm font-semibold leading-tight line-clamp-2 w-full px-1'" :class="{ 'line-through text-gray-400': item.isDone && viewMode === 'grid'}">{{ item.name }}</span>
+          <span 
+            :class="[
+              viewMode === 'list' ? 'text-lg tracking-tight' : 'text-sm font-semibold leading-tight line-clamp-2 w-full px-1',
+              { 'line-through text-gray-400': item.isDone && viewMode === 'grid'}
+            ]"
+          >
+            {{ item.name }}
+          </span>
         </span>
         
         <!-- Date -->
