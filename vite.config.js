@@ -11,9 +11,9 @@ export default defineConfig({
             registerType: 'autoUpdate',
             includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
             manifest: {
-                name: 'My Shopping List',
-                short_name: 'ShoppingList',
-                description: 'A simple offline shopping list',
+                name: 'Buku Apps',
+                short_name: 'Buku Apps',
+                description: 'Aplikasi belanja harian',
                 theme_color: '#ffffff',
                 icons: [
                     {
