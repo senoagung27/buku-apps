@@ -47,6 +47,7 @@ const handleClearAll = () => {
             v-for="item in items"
             :key="item.id"
             :item="item"
+            :view-mode="store.viewMode"
             @toggle="store.toggleItem"
             @delete="store.deleteItem"
           />
@@ -67,6 +68,7 @@ const handleClearAll = () => {
                 v-for="item in items"
                 :key="item.id"
                 :item="item"
+                :view-mode="store.viewMode"
                 @toggle="store.toggleItem"
                 @delete="store.deleteItem"
               />
