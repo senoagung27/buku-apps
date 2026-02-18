@@ -21,6 +21,7 @@
   "homepage": "https://github.com/senoagung27/buku-apps#readme",
   "dependencies": {
     "@heroicons/vue": "^2.2.0",
+    "@vercel/analytics": "^1.6.1",
     "idb": "^8.0.3",
     "pinia": "^3.0.4",
     "vue": "^3.5.28"
