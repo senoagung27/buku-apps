@@ -23,36 +23,19 @@ const copyItem = async () => {
 
 <template>
   <div
-    class="group relative bg-white rounded-2xl border border-gray-100/50 hover:shadow-[0_8px_16px_rgba(0,0,0,0.06)] hover:-translate-y-0.5 transition-all duration-300 overflow-hidden"
+    class="group relative bg-white rounded-2xl border border-gray-100/50 hover:shadow-[0_8px_16px_rgba(0,0,0,0.06)] hover:-translate-y-0.5 transition-all duration-300 overflow-hidden flex flex-col"
     :class="[
-      { 'opacity-60 bg-gray-50 shadow-none border-transparent': item.isDone },
+      { 'opacity-70 bg-gray-50/50 shadow-none ring-1 ring-gray-100': item.isDone },
       viewMode === 'list' 
-        ? 'flex items-center justify-between p-4 shadow-[0_2px_8px_rgba(0,0,0,0.04)]' 
-        : 'flex flex-col items-center justify-center p-4 text-center aspect-square shadow-sm'
+        ? 'flex-row items-center justify-between p-4 shadow-[0_2px_8px_rgba(0,0,0,0.04)]' 
+        : 'text-center aspect-[4/5] shadow-sm justify-between'
     ]"
     @click="emit('toggle', item.id)"
   >
-    <!-- Grid View Actions (Absolute) -->
-    <template v-if="viewMode === 'grid'">
-      <button 
-        @click.stop="copyItem" 
-        class="absolute top-2 left-2 p-1.5 text-gray-300 hover:text-emerald-500 rounded-full hover:bg-emerald-50 transition-colors active:scale-90"
-      >
-        <CheckIcon v-if="copied" class="w-4 h-4 text-emerald-500" />
-        <ClipboardDocumentIcon v-else class="w-4 h-4" />
-      </button>
-      <button 
-        @click.stop="emit('delete', item.id)" 
-        class="absolute top-2 right-2 p-1.5 text-gray-300 hover:text-red-500 rounded-full hover:bg-red-50 transition-colors active:scale-90"
-      >
-        <TrashIcon class="w-4 h-4" />
-      </button>
-    </template>
-
     <!-- Content Wrapper -->
-    <div :class="viewMode === 'list' ? 'flex items-center gap-4 flex-1 cursor-pointer select-none' : 'w-full flex flex-col items-center gap-2 cursor-pointer select-none'">
+    <div :class="viewMode === 'list' ? 'flex items-center gap-4 flex-1 cursor-pointer select-none' : 'w-full flex-1 flex flex-col items-center justify-center gap-2 cursor-pointer select-none p-4'">
       
-      <!-- Checkbox / Status Indicator -->
+      <!-- Checkbox (List View Only) -->
       <div v-if="viewMode === 'list'" class="text-emerald-500 transition-colors duration-300" :class="{ 'text-gray-300': !item.isDone }">
         <CheckCircleIcon class="w-6 h-6" v-if="item.isDone" />
         <div v-else class="w-6 h-6 rounded-full border-2 border-gray-200 group-hover:border-emerald-400 transition-colors"></div>
@@ -60,16 +43,16 @@ const copyItem = async () => {
       
       <!-- Icon & Name -->
       <span class="font-medium text-gray-700 flex " :class="viewMode === 'list' ? 'flex-col text-left' : 'flex-col items-center w-full'">
-         <!-- Done State Strikethrough logic applied to wrapper or text -->
+         <!-- Done State Strikethrough logic -->
         <span 
           class="flex gap-2" 
           :class="[
-            viewMode === 'list' ? 'items-center' : 'flex-col items-center gap-1', 
-            { 'line-through text-gray-400 decoration-gray-300': item.isDone }
+            viewMode === 'list' ? 'items-center' : 'flex-col items-center gap-2', 
+            { 'line-through text-gray-400 decoration-gray-300': item.isDone && viewMode === 'list' }
           ]"
         >
-          <span :class="viewMode === 'list' ? 'text-2xl' : 'text-4xl mb-1 filter drop-shadow-sm'">{{ item.icon || item.categoryIcon }}</span>
-          <span :class="viewMode === 'list' ? 'text-lg tracking-tight' : 'text-sm leading-tight line-clamp-2 w-full px-1'">{{ item.name }}</span>
+          <span :class="viewMode === 'list' ? 'text-2xl' : 'text-5xl mb-1 filter drop-shadow-sm'">{{ item.icon || item.categoryIcon }}</span>
+          <span :class="viewMode === 'list' ? 'text-lg tracking-tight' : 'text-sm font-semibold leading-tight line-clamp-2 w-full px-1'" :class="{ 'line-through text-gray-400': item.isDone && viewMode === 'grid'}">{{ item.name }}</span>
         </span>
         
         <!-- Date -->
@@ -101,9 +84,29 @@ const copyItem = async () => {
       </button>
     </div>
 
-    <!-- Grid View Checked Indicator (Overlay or element) -->
-    <div v-if="viewMode === 'grid' && item.isDone" class="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <CheckCircleIcon class="w-12 h-12 text-emerald-500/20" />
+    <!-- Grid View Actions (Bottom Row) -->
+    <div v-if="viewMode === 'grid'" class="flex items-center border-t border-gray-100 bg-gray-50/50 divide-x divide-gray-100">
+        <button 
+        @click.stop="copyItem" 
+        class="flex-1 py-3 text-gray-400 hover:text-emerald-600 hover:bg-white transition-colors active:bg-gray-100 flex items-center justify-center font-medium text-xs gap-1"
+      >
+        <CheckIcon v-if="copied" class="w-4 h-4 text-emerald-500" />
+        <ClipboardDocumentIcon v-else class="w-4 h-4" />
+        <span v-if="copied" class="text-emerald-500">Copied</span>
+      </button>
+      <button 
+        @click.stop="emit('delete', item.id)" 
+        class="flex-1 py-3 text-gray-400 hover:text-red-500 hover:bg-white transition-colors active:bg-gray-100 flex items-center justify-center"
+      >
+        <TrashIcon class="w-4 h-4" />
+      </button>
+    </div>
+
+    <!-- Grid View Checked Indicator (Corner Badge) -->
+    <div v-if="viewMode === 'grid' && item.isDone" class="absolute top-2 right-2 flex items-center justify-center pointer-events-none animate-in fade-in zoom-in duration-200">
+        <div class="bg-emerald-500 text-white rounded-full p-1 shadow-md">
+            <CheckIcon class="w-3 h-3 stroke-[3]" />
+        </div>
     </div>
   </div>
 </template>
