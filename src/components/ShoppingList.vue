@@ -38,7 +38,7 @@ const handleClearAll = () => {
       </div>
 
       <div v-for="(items, category) in store.itemsByCategory" :key="category" class="animate-fade-in">
-        <h2 class="text-xs font-bold text-gray-500 mb-3 uppercase tracking-wider px-1 sticky top-16 bg-gray-50/95 backdrop-blur py-2 z-10 flex items-center gap-2">
+        <h2 class="text-xs font-bold text-gray-500 mb-3 uppercase tracking-wider px-1 flex items-center gap-2 mt-6 first:mt-0">
           <span class="text-lg">{{ items[0].categoryIcon || '📦' }}</span>
           {{ category }}
         </h2>
