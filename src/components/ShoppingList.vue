@@ -54,13 +54,14 @@ const handleClearAll = () => {
       </div>
       
       <!-- History Section -->
-      <div v-if="Object.keys(store.historyByDate).length > 0" class="mt-12 pt-8 border-t border-gray-200">
-         <h2 class="text-lg font-bold text-gray-800 mb-6 flex items-center gap-2">
-            <span class="text-xl">📜</span> Riwayat Belanja
+      <div v-if="Object.keys(store.historyByDate).length > 0" class="mt-8 pt-8">
+         <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center gap-3 px-2">
+            <span class="text-2xl filter drop-shadow-sm">📜</span> 
+            <span>Riwayat Belanja</span>
          </h2>
          
-         <div v-for="(items, date) in store.historyByDate" :key="date" class="mb-8 opacity-75">
-            <h3 class="text-sm font-semibold text-emerald-600 mb-3 bg-emerald-50 inline-block px-3 py-1 rounded-full">{{ date }}</h3>
+         <div v-for="(items, date) in store.historyByDate" :key="date" class="mb-8 relative pl-4 border-l-2 border-emerald-100/50">
+            <h3 class="text-sm font-semibold text-emerald-600 mb-4 bg-emerald-50/80 backdrop-blur-sm inline-block px-4 py-1.5 rounded-full shadow-sm border border-emerald-100/50">{{ date }}</h3>
             <div class="space-y-3">
               <ShoppingItem
                 v-for="item in items"

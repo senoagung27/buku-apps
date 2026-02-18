@@ -19,37 +19,37 @@ const copyItem = async () => {
 
 <template>
   <div
-    class="group flex items-center justify-between p-3.5 bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all duration-200"
-    :class="{ 'opacity-60 bg-gray-50': item.isDone }"
+    class="group flex items-center justify-between p-4 bg-white rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.04)] border border-gray-100/50 hover:shadow-[0_8px_16px_rgba(0,0,0,0.06)] hover:-translate-y-0.5 transition-all duration-300"
+    :class="{ 'opacity-60 bg-gray-50 shadow-none border-transparent': item.isDone }"
   >
-    <div class="flex items-center gap-3.5 flex-1 cursor-pointer select-none" @click="emit('toggle', item.id)">
-      <div class="text-emerald-500 transition-colors" :class="{ 'text-gray-300': !item.isDone }">
-        <CheckCircleIcon class="w-7 h-7" v-if="item.isDone" />
-        <div v-else class="w-7 h-7 rounded-full border-2 border-gray-300 hover:border-emerald-400 transition-colors"></div>
+    <div class="flex items-center gap-4 flex-1 cursor-pointer select-none" @click="emit('toggle', item.id)">
+      <div class="text-emerald-500 transition-colors duration-300" :class="{ 'text-gray-300': !item.isDone }">
+        <CheckCircleIcon class="w-6 h-6" v-if="item.isDone" />
+        <div v-else class="w-6 h-6 rounded-full border-2 border-gray-200 group-hover:border-emerald-400 transition-colors"></div>
       </div>
-      <span class="text-lg font-medium text-gray-700 flex flex-col" :class="{ 'line-through text-gray-400': item.isDone }">
-        <span class="flex items-center gap-2">
-          <span class="text-xl">{{ item.icon || item.categoryIcon }}</span>
-          {{ item.name }}
+      <span class="text-lg font-medium text-gray-700 flex flex-col" :class="{ 'line-through text-gray-400 decoration-gray-300': item.isDone }">
+        <span class="flex items-center gap-3">
+          <span class="text-2xl filter drop-shadow-sm">{{ item.icon || item.categoryIcon }}</span>
+          <span class="tracking-tight">{{ item.name }}</span>
         </span>
-        <span class="text-xs text-gray-400 font-normal ml-8">
+        <span class="text-xs text-gray-400 font-medium ml-9 mt-0.5 tracking-wide uppercase opacity-70">
           {{ new Date(item.createdAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'short' }) }}
         </span>
       </span>
     </div>
     
-    <div class="flex items-center gap-0.5">
+    <div class="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
       <button 
         @click.stop="copyItem" 
-        class="text-gray-400 hover:text-emerald-500 p-2 rounded-full hover:bg-emerald-50 transition-colors"
+        class="text-gray-400 hover:text-emerald-600 p-2 rounded-full hover:bg-emerald-50 transition-colors active:scale-90"
         aria-label="Copy item"
       >
-        <CheckIcon v-if="copied" class="w-4 h-4 text-emerald-500" />
-        <ClipboardDocumentIcon v-else class="w-4 h-4" />
+        <CheckIcon v-if="copied" class="w-5 h-5 text-emerald-500" />
+        <ClipboardDocumentIcon v-else class="w-5 h-5" />
       </button>
       <button 
         @click.stop="emit('delete', item.id)" 
-        class="text-gray-400 hover:text-red-500 p-2 rounded-full hover:bg-red-50 transition-colors focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+        class="text-gray-400 hover:text-red-500 p-2 rounded-full hover:bg-red-50 transition-colors active:scale-90 focus:outline-none"
         aria-label="Delete item"
       >
         <TrashIcon class="w-5 h-5" />
