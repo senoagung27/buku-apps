@@ -12,6 +12,14 @@ export const useShoppingStore = defineStore('shopping', () => {
         },
     })
 
+    // View Mode State
+    const viewMode = ref(localStorage.getItem('viewMode') || 'list')
+
+    const toggleViewMode = () => {
+        viewMode.value = viewMode.value === 'list' ? 'grid' : 'list'
+        localStorage.setItem('viewMode', viewMode.value)
+    }
+
     // Helper to check if date is today
     const isToday = (timestamp) => {
         const date = new Date(timestamp)
@@ -256,6 +264,8 @@ export const useShoppingStore = defineStore('shopping', () => {
         toggleItem,
         deleteItem,
         clearAll,
-        detectCategory // Exported for potential use in UI
+        detectCategory, // Exported for potential use in UI
+        viewMode,
+        toggleViewMode
     }
 })

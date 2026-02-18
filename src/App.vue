@@ -4,7 +4,7 @@ import { useShoppingStore } from './stores/shopping'
 import ShoppingInput from './components/ShoppingInput.vue'
 import ShoppingList from './components/ShoppingList.vue'
 import { ShoppingBagIcon } from '@heroicons/vue/24/solid'
-import { ArrowPathIcon, ClipboardDocumentIcon, CheckIcon } from '@heroicons/vue/24/outline'
+import { ArrowPathIcon, ClipboardDocumentIcon, CheckIcon, ListBulletIcon, Squares2X2Icon } from '@heroicons/vue/24/outline'
 import { ref } from 'vue'
 
 const isRefreshing = ref(false)
@@ -55,6 +55,14 @@ onMounted(() => {
           >
             <CheckIcon v-if="copied" class="w-5 h-5 text-emerald-500" />
             <ClipboardDocumentIcon v-else class="w-5 h-5" />
+          </button>
+          <button 
+            @click="store.toggleViewMode" 
+            class="p-2 text-gray-400 hover:text-emerald-600 hover:bg-emerald-50 rounded-full transition-colors active:scale-95"
+            :aria-label="store.viewMode === 'list' ? 'Switch to grid view' : 'Switch to list view'"
+          >
+            <Squares2X2Icon v-if="store.viewMode === 'list'" class="w-5 h-5" />
+            <ListBulletIcon v-else class="w-5 h-5" />
           </button>
           <button 
             @click="refresh" 

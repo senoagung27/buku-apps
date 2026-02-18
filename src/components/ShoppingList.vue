@@ -42,7 +42,7 @@ const handleClearAll = () => {
           <span class="text-lg">{{ items[0].categoryIcon || '📦' }}</span>
           {{ category }}
         </h2>
-        <div class="space-y-3">
+        <div :class="{ 'space-y-3': store.viewMode === 'list', 'grid grid-cols-2 gap-3': store.viewMode === 'grid' }">
           <ShoppingItem
             v-for="item in items"
             :key="item.id"
