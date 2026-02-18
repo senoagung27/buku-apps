@@ -192,6 +192,22 @@ export const useShoppingStore = defineStore('shopping', () => {
             'sikat': '🪥',
             'odol': '🪥',
             'tisu': '🧻',
+            'nasi padang': '🍛',
+            'ayam geprek': '🍗',
+            'bakso': '🍲',
+            'mie ayam': '🍜',
+            'soto': '🍲',
+            'nasi goreng': '🥘',
+            'martabak': '🥞',
+            'martabak telur': '🍳',
+            'seblak': '🥘',
+            'pecel': '🐟',
+            'bubur': '🥣',
+            'sate': '🍢',
+            'gado-gado': '🥗',
+            'ketoprak': '🥗',
+            'lontong': '🍲',
+            'roti bakar': '🍞',
             'obat': '💊'
         }
 
