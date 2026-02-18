@@ -38,7 +38,7 @@ const handleKeydown = (e) => {
 </script>
 
 <template>
-  <div class="p-4 bg-gradient-to-t from-gray-50 via-gray-50/95 to-transparent pt-8">
+  <div class="p-4 bg-gradient-to-t from-gray-50 via-gray-50/95 to-transparent pt-8 pb-[calc(1rem+env(safe-area-inset-bottom))]">
     <div class="relative max-w-md mx-auto group">
       <div class="absolute inset-0 bg-emerald-500/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
       <div class="relative bg-white/80 backdrop-blur-xl rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-white/50 p-1.5 flex items-end gap-2 transition-transform duration-300 focus-within:-translate-y-1">
