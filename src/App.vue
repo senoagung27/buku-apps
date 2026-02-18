@@ -68,15 +68,15 @@ onMounted(() => {
     </header>
     
     <!-- Scrolling Content -->
-    <main class="flex-1 overflow-y-auto w-full max-w-md mx-auto relative flex flex-col">
-      <div class="p-4 pb-32">
+    <main class="flex-1 overflow-y-auto w-full max-w-md mx-auto relative flex flex-col no-scrollbar">
+      <div class="p-4 pb-4">
         <ShoppingList />
       </div>
-
-      <!-- Fixed Input Area at Bottom of Main Container -->
-      <div class="sticky bottom-0 mt-auto z-20">
-        <ShoppingInput />
-      </div>
     </main>
+
+    <!-- Fixed Input Area at Bottom -->
+    <div class="flex-none w-full max-w-md mx-auto z-20">
+      <ShoppingInput />
+    </div>
   </div>
 </template>
