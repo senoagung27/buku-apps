@@ -1,7 +1,7 @@
 <script setup>
 import { ref, nextTick } from 'vue'
 import { useShoppingStore } from '../stores/shopping'
-import { PlusIcon } from '@heroicons/vue/24/solid'
+import { PaperAirplaneIcon } from '@heroicons/vue/24/solid'
 
 const store = useShoppingStore()
 const newItem = ref('')
@@ -38,10 +38,9 @@ const handleKeydown = (e) => {
 </script>
 
 <template>
-  <div class="p-4 bg-gradient-to-t from-gray-50 via-gray-50/95 to-transparent pt-8 pb-[calc(1rem+env(safe-area-inset-bottom))]">
-    <div class="relative max-w-md mx-auto group">
-      <div class="absolute inset-0 bg-emerald-500/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-      <div class="relative bg-white/80 backdrop-blur-xl rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-white/50 p-1.5 flex items-end gap-2 transition-transform duration-300 focus-within:-translate-y-1">
+  <div class="p-4 bg-gradient-to-t from-gray-50 via-gray-50/95 to-transparent pt-2 pb-[calc(1rem+env(safe-area-inset-bottom))]">
+    <div class="relative max-w-md mx-auto flex items-end gap-2">
+      <div class="relative flex-1 bg-white dark:bg-gray-800 shadow-sm border border-gray-200 dark:border-gray-700 rounded-3xl flex items-center transition-colors">
         <textarea
           ref="textareaRef"
           v-model="newItem"
@@ -49,16 +48,18 @@ const handleKeydown = (e) => {
           @keydown="handleKeydown"
           placeholder="Tulis barang belanja..."
           rows="1"
-          class="w-full pl-6 py-4 bg-transparent border-none focus:ring-0 text-gray-800 placeholder-gray-400 text-lg resize-none overflow-hidden leading-relaxed max-h-[150px]"
+          class="w-full pl-5 py-3 bg-transparent border-none focus:ring-0 text-gray-800 dark:text-gray-100 placeholder-gray-400 text-[16px] resize-none overflow-hidden leading-relaxed max-h-[150px]"
         ></textarea>
-        <button
-          @click="add"
-          class="flex-none w-12 h-12 bg-emerald-500 text-white rounded-full flex items-center justify-center hover:bg-emerald-600 active:scale-90 transition-all shadow-lg hover:shadow-emerald-500/30 mb-0.5"
-          aria-label="Add item"
-        >
-          <PlusIcon class="w-6 h-6" />
-        </button>
       </div>
+      <button
+        @click="add"
+        class="flex-none w-12 h-12 rounded-full flex items-center justify-center transition-all shadow-md active:scale-90"
+        :class="newItem.trim() ? 'bg-emerald-500 text-white hover:bg-emerald-600 shadow-emerald-500/30' : 'bg-gray-200 text-gray-400 dark:bg-gray-700 dark:text-gray-500 cursor-not-allowed'"
+        :disabled="!newItem.trim()"
+        aria-label="Add item"
+      >
+        <PaperAirplaneIcon class="w-5 h-5 ml-0.5" />
+      </button>
     </div>
   </div>
 </template>

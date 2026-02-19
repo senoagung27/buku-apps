@@ -14,10 +14,28 @@ export const useShoppingStore = defineStore('shopping', () => {
 
     // View Mode State
     const viewMode = ref(localStorage.getItem('viewMode') || 'list')
+    const isDarkMode = ref(localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches))
 
     const toggleViewMode = () => {
         viewMode.value = viewMode.value === 'list' ? 'grid' : 'list'
         localStorage.setItem('viewMode', viewMode.value)
+    }
+
+    const toggleDarkMode = () => {
+        isDarkMode.value = !isDarkMode.value
+        localStorage.setItem('theme', isDarkMode.value ? 'dark' : 'light')
+        if (isDarkMode.value) {
+            document.documentElement.classList.add('dark')
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+    }
+
+    // Initialize Dark Mode
+    if (isDarkMode.value) {
+        document.documentElement.classList.add('dark')
+    } else {
+        document.documentElement.classList.remove('dark')
     }
 
     // Helper to check if date is today
@@ -297,6 +315,8 @@ export const useShoppingStore = defineStore('shopping', () => {
         clearAll,
         detectCategory, // Exported for potential use in UI
         viewMode,
-        toggleViewMode
+        toggleViewMode,
+        isDarkMode,
+        toggleDarkMode
     }
 })
