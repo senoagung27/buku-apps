@@ -40,19 +40,19 @@ const handleClearAll = () => {
       <!-- Search Bar -->
       <div class="sticky top-0 z-20 bg-gray-50/95 dark:bg-gray-900/95 backdrop-blur-sm py-2 mb-6 -mx-2 px-2 transition-colors">
         <div class="relative group">
-          <MagnifyingGlassIcon class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 dark:text-gray-400" />
+          <MagnifyingGlassIcon class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 dark:text-gray-400" />
           <input 
             v-model="store.searchQuery"
             type="text"
             placeholder="Cari barang..."
-            class="flex h-10 w-full rounded-md border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 px-3 py-2 pl-9 text-sm ring-offset-white dark:ring-offset-gray-950 file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-gray-500 dark:placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 dark:focus-visible:ring-gray-300 disabled:cursor-not-allowed disabled:opacity-50"
+            class="flex h-12 w-full rounded-full border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 px-4 py-3 pl-11 text-base ring-offset-white dark:ring-offset-gray-950 file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-gray-500 dark:placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 dark:focus-visible:ring-gray-300 disabled:cursor-not-allowed disabled:opacity-50 transition-shadow shadow-sm"
           />
           <button 
             v-if="store.searchQuery"
             @click="store.searchQuery = ''"
-            class="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-gray-500 hover:text-gray-900 dark:hover:text-gray-50 rounded-md transition-colors"
+            class="absolute right-4 top-1/2 -translate-y-1/2 p-1 text-gray-500 hover:text-gray-900 dark:hover:text-gray-50 rounded-full transition-colors"
           >
-            <XMarkIcon class="w-3 h-3" />
+            <XMarkIcon class="w-4 h-4" />
           </button>
         </div>
       </div>
