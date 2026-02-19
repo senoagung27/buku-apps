@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import { useShoppingStore } from '../stores/shopping'
 import ShoppingItem from './ShoppingItem.vue'
 import ConfirmModal from './ConfirmModal.vue'
-import { TrashIcon } from '@heroicons/vue/24/outline'
+import { TrashIcon, MagnifyingGlassIcon, XMarkIcon } from '@heroicons/vue/24/outline'
 
 const store = useShoppingStore()
 const showClearModal = ref(false)
@@ -35,6 +35,26 @@ const handleClearAll = () => {
           <TrashIcon class="w-4 h-4" />
           Hapus Semua
         </button>
+      </div>
+
+      <!-- Search Bar -->
+      <div class="sticky top-0 z-20 bg-gray-50/95 dark:bg-gray-900/95 backdrop-blur-sm py-2 mb-6 -mx-2 px-2 transition-colors">
+        <div class="relative group">
+          <MagnifyingGlassIcon class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-emerald-500 transition-colors" />
+          <input 
+            v-model="store.searchQuery"
+            type="text"
+            placeholder="Cari barang belanjaan..."
+            class="w-full bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 text-[15px] font-medium rounded-2xl py-3.5 pl-11 pr-10 border border-gray-200 dark:border-gray-700 shadow-sm focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 dark:focus:border-emerald-500 outline-none placeholder-gray-400 transition-all"
+          />
+          <button 
+            v-if="store.searchQuery"
+            @click="store.searchQuery = ''"
+            class="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+          >
+            <XMarkIcon class="w-4 h-4" />
+          </button>
+        </div>
       </div>
 
       <div v-for="(items, category) in store.itemsByCategory" :key="category" class="animate-fade-in">

@@ -5,7 +5,7 @@ import ShoppingInput from './components/ShoppingInput.vue'
 import ShoppingList from './components/ShoppingList.vue'
 import SplashScreen from './components/SplashScreen.vue'
 import { ShoppingBagIcon } from '@heroicons/vue/24/solid'
-import { ArrowPathIcon, ClipboardDocumentIcon, CheckIcon, ListBulletIcon, Squares2X2Icon, MoonIcon, SunIcon, MagnifyingGlassIcon, XMarkIcon } from '@heroicons/vue/24/outline'
+import { ArrowPathIcon, ClipboardDocumentIcon, CheckIcon, ListBulletIcon, Squares2X2Icon, MoonIcon, SunIcon } from '@heroicons/vue/24/outline'
 
 const isRefreshing = ref(false)
 const showSplash = ref(true)
@@ -102,25 +102,7 @@ onMounted(() => {
     
     <!-- Scrolling Content -->
     <main class="flex-1 overflow-y-auto w-full max-w-md mx-auto relative flex flex-col no-scrollbar">
-      <div class="p-4 pb-4 space-y-4">
-        <!-- Search Bar -->
-        <div class="relative">
-          <MagnifyingGlassIcon class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-          <input 
-            v-model="store.searchQuery"
-            type="text"
-            placeholder="Cari barang belanjaan..."
-            class="w-full bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 text-[15px] font-medium rounded-2xl py-3 pl-11 pr-4 border border-gray-100 dark:border-gray-700 shadow-sm focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 dark:focus:border-emerald-500 outline-none placeholder-gray-400 transition-all"
-          />
-          <button 
-            v-if="store.searchQuery"
-            @click="store.searchQuery = ''"
-            class="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-          >
-            <XMarkIcon class="w-4 h-4" />
-          </button>
-        </div>
-
+      <div class="p-4 pb-4">
         <ShoppingList />
       </div>
     </main>
