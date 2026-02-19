@@ -12,6 +12,32 @@ export const useShoppingStore = defineStore('shopping', () => {
         },
     })
 
+    // View Mode State
+    const viewMode = ref(localStorage.getItem('viewMode') || 'list')
+    const isDarkMode = ref(localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches))
+
+    const toggleViewMode = () => {
+        viewMode.value = viewMode.value === 'list' ? 'grid' : 'list'
+        localStorage.setItem('viewMode', viewMode.value)
+    }
+
+    const toggleDarkMode = () => {
+        isDarkMode.value = !isDarkMode.value
+        localStorage.setItem('theme', isDarkMode.value ? 'dark' : 'light')
+        if (isDarkMode.value) {
+            document.documentElement.classList.add('dark')
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+    }
+
+    // Initialize Dark Mode
+    if (isDarkMode.value) {
+        document.documentElement.classList.add('dark')
+    } else {
+        document.documentElement.classList.remove('dark')
+    }
+
     // Helper to check if date is today
     const isToday = (timestamp) => {
         const date = new Date(timestamp)
@@ -21,16 +47,30 @@ export const useShoppingStore = defineStore('shopping', () => {
             date.getFullYear() === today.getFullYear()
     }
 
+    // Search State
+    const searchQuery = ref('')
+
     // Active list: All undone items + Done items created today
     const currentItems = computed(() => {
-        return items.value.filter(item => !item.isDone || isToday(item.createdAt))
+        let result = items.value.filter(item => !item.isDone || isToday(item.createdAt))
+        if (searchQuery.value.trim()) {
+            const query = searchQuery.value.toLowerCase()
+            result = result.filter(item => item.name.toLowerCase().includes(query))
+        }
+        return result
     })
 
     // History list: Done items created before today
     const historyItems = computed(() => {
-        return items.value
+        let result = items.value
             .filter(item => item.isDone && !isToday(item.createdAt))
             .sort((a, b) => b.createdAt - a.createdAt) // Newest first
+
+        if (searchQuery.value.trim()) {
+            const query = searchQuery.value.toLowerCase()
+            result = result.filter(item => item.name.toLowerCase().includes(query))
+        }
+        return result
     })
 
     // Group current items by category
@@ -72,6 +112,11 @@ export const useShoppingStore = defineStore('shopping', () => {
         const lower = name.toLowerCase()
 
         const categories = [
+            {
+                name: 'Makanan',
+                icon: '🥘',
+                keywords: ['nasi padang', 'ayam geprek', 'bakso', 'mie ayam', 'soto', 'nasi goreng', 'martabak', 'seblak', 'pecel', 'bubur', 'sate', 'gado-gado', 'ketoprak', 'lontong', 'roti bakar']
+            },
             {
                 name: 'Sayuran & Buah',
                 icon: '🥬',
@@ -128,15 +173,25 @@ export const useShoppingStore = defineStore('shopping', () => {
             'rawit': '🌶️',
             'rambutan': '🔴',
             'telur': '🥚',
+            'dada ayam': '🥩',
+            'dada': '🥩',
+            'sayap': '🍗',
             'ayam': '🍗',
             'daging': '🥩',
             'sapi': '🐄',
             'ikan': '🐟',
+            'kembung': '🐟',
             'tongkol': '🐟',
+            'tuna': '🐟',
             'lele': '🐟',
+            'udang': '🦐',
+            'cumi': '🦑',
+            'kerang': '🦪',
+            'kepiting': '🦀',
             'sarden': '🥫',
-            'tahu': '🧊',
-            'tempe': '🍘',
+            'kornet': '🥫',
+            'tahu': '🧈',
+            'tempe': '🫘',
             'beras': '🍚',
             'minyak': '🍳',
             'garam': '🧂',
@@ -174,7 +229,25 @@ export const useShoppingStore = defineStore('shopping', () => {
             'sikat': '🪥',
             'odol': '🪥',
             'tisu': '🧻',
-            'obat': '💊'
+            'nasi padang': '🍛',
+            'ayam geprek': '🍗',
+            'bakso': '🍲',
+            'mie ayam': '🍜',
+            'soto': '🍲',
+            'nasi goreng': '🥘',
+            'martabak': '🥞',
+            'martabak telur': '🍳',
+            'seblak': '🥘',
+            'pecel': '🐟',
+            'bubur': '🥣',
+            'sate': '🍢',
+            'gado-gado': '🥗',
+            'ketoprak': '🥗',
+            'lontong': '🍲',
+            'roti bakar': '🍞',
+            'obat': '💊',
+            'kentang': '🥔',
+            'pepaya': '🥭'
         }
 
         let bestMatch = null
@@ -256,6 +329,11 @@ export const useShoppingStore = defineStore('shopping', () => {
         toggleItem,
         deleteItem,
         clearAll,
-        detectCategory // Exported for potential use in UI
+        detectCategory, // Exported for potential use in UI
+        viewMode,
+        toggleViewMode,
+        isDarkMode,
+        toggleDarkMode,
+        searchQuery
     }
 })

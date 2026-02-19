@@ -1,7 +1,7 @@
 <script setup>
 import { ref, nextTick } from 'vue'
 import { useShoppingStore } from '../stores/shopping'
-import { PlusIcon } from '@heroicons/vue/24/solid'
+import { PaperAirplaneIcon } from '@heroicons/vue/24/solid'
 
 const store = useShoppingStore()
 const newItem = ref('')
@@ -29,36 +29,31 @@ const add = () => {
   }
 }
 
-const handleKeydown = (e) => {
-  if (e.key === 'Enter' && !e.shiftKey) {
-    e.preventDefault()
-    add()
-  }
-}
+
 </script>
 
 <template>
-  <div class="p-4 bg-gradient-to-t from-gray-50 via-gray-50/95 to-transparent pt-8 pb-[calc(1rem+env(safe-area-inset-bottom))]">
-    <div class="relative max-w-md mx-auto group">
-      <div class="absolute inset-0 bg-emerald-500/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-      <div class="relative bg-white/80 backdrop-blur-xl rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-white/50 p-1.5 flex items-end gap-2 transition-transform duration-300 focus-within:-translate-y-1">
+  <div class="p-4 bg-white dark:bg-gray-950 border-t border-gray-100 dark:border-gray-800">
+    <div class="relative max-w-md mx-auto flex items-end gap-2">
+      <div class="relative flex-1">
         <textarea
           ref="textareaRef"
           v-model="newItem"
           @input="handleInput"
-          @keydown="handleKeydown"
           placeholder="Tulis barang belanja..."
           rows="1"
-          class="w-full pl-6 py-4 bg-transparent border-none focus:ring-0 text-gray-800 placeholder-gray-400 text-lg resize-none overflow-hidden leading-relaxed max-h-[150px]"
+          class="flex min-h-[52px] w-full rounded-[26px] border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 px-5 py-3.5 text-base ring-offset-white dark:ring-offset-gray-950 placeholder:text-gray-500 dark:placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 dark:focus-visible:ring-gray-300 disabled:cursor-not-allowed disabled:opacity-50 text-gray-900 dark:text-gray-50 resize-none overflow-hidden leading-relaxed max-h-[150px] shadow-sm"
         ></textarea>
-        <button
-          @click="add"
-          class="flex-none w-12 h-12 bg-emerald-500 text-white rounded-full flex items-center justify-center hover:bg-emerald-600 active:scale-90 transition-all shadow-lg hover:shadow-emerald-500/30 mb-0.5"
-          aria-label="Add item"
-        >
-          <PlusIcon class="w-6 h-6" />
-        </button>
       </div>
+      <button
+        @click="add"
+        class="inline-flex items-center justify-center whitespace-nowrap rounded-full text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-[52px] w-[52px] shrink-0 shadow-sm"
+        :class="newItem.trim() ? 'bg-gray-900 text-gray-50 hover:bg-gray-900/90 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90' : 'bg-gray-100 text-gray-500 dark:bg-gray-800 dark:text-gray-400 cursor-not-allowed'"
+        :disabled="!newItem.trim()"
+        aria-label="Add item"
+      >
+        <PaperAirplaneIcon class="w-6 h-6 ml-0.5" />
+      </button>
     </div>
   </div>
 </template>
