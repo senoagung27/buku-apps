@@ -246,7 +246,8 @@ export const useShoppingStore = defineStore('shopping', () => {
             'lontong': '🍲',
             'roti bakar': '🍞',
             'obat': '💊',
-            'kentang': '🥔'
+            'kentang': '🥔',
+            'pepaya': '🥭'
         }
 
         let bestMatch = null
