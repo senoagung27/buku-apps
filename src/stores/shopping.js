@@ -47,16 +47,30 @@ export const useShoppingStore = defineStore('shopping', () => {
             date.getFullYear() === today.getFullYear()
     }
 
+    // Search State
+    const searchQuery = ref('')
+
     // Active list: All undone items + Done items created today
     const currentItems = computed(() => {
-        return items.value.filter(item => !item.isDone || isToday(item.createdAt))
+        let result = items.value.filter(item => !item.isDone || isToday(item.createdAt))
+        if (searchQuery.value.trim()) {
+            const query = searchQuery.value.toLowerCase()
+            result = result.filter(item => item.name.toLowerCase().includes(query))
+        }
+        return result
     })
 
     // History list: Done items created before today
     const historyItems = computed(() => {
-        return items.value
+        let result = items.value
             .filter(item => item.isDone && !isToday(item.createdAt))
             .sort((a, b) => b.createdAt - a.createdAt) // Newest first
+
+        if (searchQuery.value.trim()) {
+            const query = searchQuery.value.toLowerCase()
+            result = result.filter(item => item.name.toLowerCase().includes(query))
+        }
+        return result
     })
 
     // Group current items by category
@@ -317,6 +331,7 @@ export const useShoppingStore = defineStore('shopping', () => {
         viewMode,
         toggleViewMode,
         isDarkMode,
-        toggleDarkMode
+        toggleDarkMode,
+        searchQuery
     }
 })

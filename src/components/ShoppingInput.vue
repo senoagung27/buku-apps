@@ -33,7 +33,7 @@ const add = () => {
 </script>
 
 <template>
-  <div class="p-4 bg-gradient-to-t from-gray-50 via-gray-50/95 to-transparent pt-2 pb-[calc(1rem+env(safe-area-inset-bottom))]">
+  <div class="p-4 bg-gradient-to-t from-gray-50 via-gray-50/95 to-transparent dark:from-gray-900 dark:via-gray-900/95 pt-2 pb-[calc(1rem+env(safe-area-inset-bottom))]">
     <div class="relative max-w-md mx-auto flex items-end gap-2">
       <div class="relative flex-1 bg-white dark:bg-gray-800 shadow-sm border border-gray-200 dark:border-gray-700 rounded-3xl flex items-center transition-colors">
         <textarea
