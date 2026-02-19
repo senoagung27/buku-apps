@@ -9,12 +9,6 @@ import { ArrowPathIcon, ClipboardDocumentIcon, CheckIcon, ListBulletIcon, Square
 
 const isRefreshing = ref(false)
 const showSplash = ref(true)
-const isSearchOpen = ref(false)
-
-const closeSearch = () => {
-  isSearchOpen.value = false
-  store.searchQuery = ''
-}
 
 const refresh = async () => {
   isRefreshing.value = true
@@ -65,43 +59,12 @@ onMounted(() => {
 
     <!-- Fixed Header -->
     <header class="bg-white/80 dark:bg-gray-900/80 shadow-sm z-30 backdrop-blur-xl border-b border-gray-100 dark:border-gray-800 flex-none transition-colors duration-300">
-      <div class="max-w-md mx-auto px-4 py-3 flex items-center justify-between gap-3">
-        
-        <!-- Search Bar (Expanded) -->
-        <div v-if="isSearchOpen" class="flex-1 flex items-center gap-2 animate-in fade-in slide-in-from-right-4 duration-200">
-          <div class="relative flex-1">
-            <MagnifyingGlassIcon class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-            <input 
-              v-model="store.searchQuery"
-              type="text"
-              placeholder="Cari barang..."
-              class="w-full bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-100 text-sm rounded-full py-2 pl-9 pr-4 border-none focus:ring-2 focus:ring-emerald-500/50 outline-none placeholder-gray-400"
-              autoFocus
-            />
-          </div>
-          <button 
-            @click="closeSearch" 
-            class="p-2 text-gray-500 hover:text-red-500 bg-gray-100 dark:bg-gray-800 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-full transition-colors"
-          >
-            <XMarkIcon class="w-5 h-5" />
-          </button>
-        </div>
-
-        <!-- Default Header Content -->
-        <div v-else class="flex items-center gap-2.5 flex-1">
+      <div class="max-w-md mx-auto px-4 py-3 flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
           <ShoppingBagIcon class="w-7 h-7 text-emerald-500" />
           <h1 class="text-lg font-bold tracking-tight text-gray-800 dark:text-white">Buku Apps</h1>
         </div>
-
-        <!-- Actions -->
-        <div v-if="!isSearchOpen" class="flex items-center gap-1">
-          <button 
-            @click="isSearchOpen = true" 
-            class="p-2 text-gray-400 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/30 rounded-full transition-colors active:scale-95"
-            aria-label="Search"
-          >
-            <MagnifyingGlassIcon class="w-5 h-5" />
-          </button>
+        <div class="flex items-center gap-1">
           <button 
             @click="store.toggleDarkMode" 
             class="p-2 text-gray-400 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/30 rounded-full transition-colors active:scale-95"
@@ -139,7 +102,25 @@ onMounted(() => {
     
     <!-- Scrolling Content -->
     <main class="flex-1 overflow-y-auto w-full max-w-md mx-auto relative flex flex-col no-scrollbar">
-      <div class="p-4 pb-4">
+      <div class="p-4 pb-4 space-y-4">
+        <!-- Search Bar -->
+        <div class="relative">
+          <MagnifyingGlassIcon class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+          <input 
+            v-model="store.searchQuery"
+            type="text"
+            placeholder="Cari barang belanjaan..."
+            class="w-full bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 text-[15px] font-medium rounded-2xl py-3 pl-11 pr-4 border border-gray-100 dark:border-gray-700 shadow-sm focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 dark:focus:border-emerald-500 outline-none placeholder-gray-400 transition-all"
+          />
+          <button 
+            v-if="store.searchQuery"
+            @click="store.searchQuery = ''"
+            class="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+          >
+            <XMarkIcon class="w-4 h-4" />
+          </button>
+        </div>
+
         <ShoppingList />
       </div>
     </main>
