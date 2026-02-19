@@ -5,8 +5,10 @@ import ShoppingInput from './components/ShoppingInput.vue'
 import ShoppingList from './components/ShoppingList.vue'
 import SplashScreen from './components/SplashScreen.vue'
 import { ShoppingBagIcon } from '@heroicons/vue/24/solid'
+import { ArrowPathIcon, ClipboardDocumentIcon, CheckIcon } from '@heroicons/vue/24/outline'
+import { ref } from 'vue'
+import { Analytics } from '@vercel/analytics/vue'
 import { ArrowPathIcon, ClipboardDocumentIcon, CheckIcon, ListBulletIcon, Squares2X2Icon, MoonIcon, SunIcon } from '@heroicons/vue/24/outline'
-
 const isRefreshing = ref(false)
 const showSplash = ref(true)
 
@@ -111,5 +113,8 @@ onMounted(() => {
     <div class="flex-none w-full max-w-md mx-auto z-20">
       <ShoppingInput />
     </div>
+    
+    <!-- Vercel Analytics -->
+    <Analytics />
   </div>
 </template>
