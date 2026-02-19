@@ -29,12 +29,7 @@ const add = () => {
   }
 }
 
-const handleKeydown = (e) => {
-  if (e.key === 'Enter' && !e.shiftKey) {
-    e.preventDefault()
-    add()
-  }
-}
+
 </script>
 
 <template>
@@ -45,7 +40,6 @@ const handleKeydown = (e) => {
           ref="textareaRef"
           v-model="newItem"
           @input="handleInput"
-          @keydown="handleKeydown"
           placeholder="Tulis barang belanja..."
           rows="1"
           class="w-full pl-5 py-3 bg-transparent border-none focus:ring-0 text-gray-800 dark:text-gray-100 placeholder-gray-400 text-[16px] resize-none overflow-hidden leading-relaxed max-h-[150px]"
