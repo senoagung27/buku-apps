@@ -19,12 +19,12 @@ const refresh = async () => {
 const copied = ref(false)
 const copyList = async () => {
   const groups = store.itemsByCategory
-  let text = '🛒 Daftar Belanja\n\n'
+  let text = 'Daftar Belanja:\n\n'
   for (const [category, items] of Object.entries(groups)) {
-    text += `${items[0]?.categoryIcon || '📦'} ${category}\n`
+    text += `${category}\n`
     for (const item of items) {
-      const check = item.isDone ? '✅' : '⬜'
-      text += `  ${check} ${item.name}\n`
+      const check = item.isDone ? '[x]' : '[ ]'
+      text += `-${check} ${item.name}\n`
     }
     text += '\n'
   }
@@ -67,7 +67,7 @@ onMounted(() => {
         <div class="flex items-center gap-1">
           <button 
             @click="store.toggleDarkMode" 
-            class="p-2 text-gray-400 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/30 rounded-full transition-colors active:scale-95"
+            class="inline-flex items-center justify-center p-2 rounded-md text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-gray-50 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50"
             :aria-label="store.isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'"
           >
             <SunIcon v-if="store.isDarkMode" class="w-5 h-5" />
@@ -75,15 +75,15 @@ onMounted(() => {
           </button>
           <button 
             @click="copyList" 
-            class="p-2 text-gray-400 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/30 rounded-full transition-colors active:scale-95"
+            class="inline-flex items-center justify-center p-2 rounded-md text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-gray-50 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50"
             aria-label="Copy list"
           >
-            <CheckIcon v-if="copied" class="w-5 h-5 text-emerald-500" />
+            <CheckIcon v-if="copied" class="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
             <ClipboardDocumentIcon v-else class="w-5 h-5" />
           </button>
           <button 
             @click="store.toggleViewMode" 
-            class="p-2 text-gray-400 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/30 rounded-full transition-colors active:scale-95"
+            class="inline-flex items-center justify-center p-2 rounded-md text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-gray-50 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50"
             :aria-label="store.viewMode === 'list' ? 'Switch to grid view' : 'Switch to list view'"
           >
             <Squares2X2Icon v-if="store.viewMode === 'list'" class="w-5 h-5" />
@@ -91,7 +91,7 @@ onMounted(() => {
           </button>
           <button 
             @click="refresh" 
-            class="p-2 text-gray-400 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/30 rounded-full transition-colors active:scale-95"
+            class="inline-flex items-center justify-center p-2 rounded-md text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-gray-50 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50"
             aria-label="Refresh"
           >
             <ArrowPathIcon class="w-5 h-5 transition-transform duration-500" :class="{ 'animate-spin': isRefreshing }" />

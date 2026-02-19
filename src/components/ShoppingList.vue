@@ -30,9 +30,9 @@ const handleClearAll = () => {
       <div class="flex justify-end mb-4">
         <button 
           @click="showClearModal" 
-          class="text-xs font-semibold text-red-500 hover:text-red-600 dark:text-red-400 dark:hover:text-red-300 bg-red-50 hover:bg-red-100 dark:bg-red-900/20 dark:hover:bg-red-900/30 px-3 py-1.5 rounded-full transition-colors flex items-center gap-1"
+          class="inline-flex items-center justify-center rounded-md text-xs font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 text-red-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 h-9 px-3"
         >
-          <TrashIcon class="w-4 h-4" />
+          <TrashIcon class="w-4 h-4 mr-2" />
           Hapus Semua
         </button>
       </div>
@@ -40,19 +40,19 @@ const handleClearAll = () => {
       <!-- Search Bar -->
       <div class="sticky top-0 z-20 bg-gray-50/95 dark:bg-gray-900/95 backdrop-blur-sm py-2 mb-6 -mx-2 px-2 transition-colors">
         <div class="relative group">
-          <MagnifyingGlassIcon class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-emerald-500 transition-colors" />
+          <MagnifyingGlassIcon class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 dark:text-gray-400" />
           <input 
             v-model="store.searchQuery"
             type="text"
-            placeholder="Cari barang belanjaan..."
-            class="w-full bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 text-[15px] font-medium rounded-2xl py-3.5 pl-11 pr-10 border border-gray-200 dark:border-gray-700 shadow-sm focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 dark:focus:border-emerald-500 outline-none placeholder-gray-400 transition-all"
+            placeholder="Cari barang..."
+            class="flex h-10 w-full rounded-md border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 px-3 py-2 pl-9 text-sm ring-offset-white dark:ring-offset-gray-950 file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-gray-500 dark:placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 dark:focus-visible:ring-gray-300 disabled:cursor-not-allowed disabled:opacity-50"
           />
           <button 
             v-if="store.searchQuery"
             @click="store.searchQuery = ''"
-            class="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+            class="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-gray-500 hover:text-gray-900 dark:hover:text-gray-50 rounded-md transition-colors"
           >
-            <XMarkIcon class="w-4 h-4" />
+            <XMarkIcon class="w-3 h-3" />
           </button>
         </div>
       </div>
